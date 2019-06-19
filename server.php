@@ -29,7 +29,9 @@
             $organizer_id_value =  $row['organizer_id'];
         }
         mysqli_query($db, "INSERT INTO tournament (organizer_id, start_date, end_date, tour_type, tour_name) VALUES ('$organizer_id_value', '$start_date', '$end_date', '$tour_type', '$tour_name')"); 
-        
+        if($organizer_id_value == 1){
+            mysqli_query($db, "INSERT INTO team (team_id, team_phone, team_name, tournament_id) VALUES (0, 0000, 'NO TEAM', 1)"); 
+        }
 		$_SESSION['message'] = "Tournment added"; 
 		header('location: teams.php');
     }
@@ -103,10 +105,11 @@
         mysqli_query($db, 'SET FOREIGN_KEY_CHECKS=0;');
         mysqli_query($db, 'DELETE FROM team WHERE team_id="'.$id.'"');
         //update player team id to null
-        mysqli_query($db, 'UPDATE player SET team_name = "NO Team" WHERE team_id="'.$id.'"');
-		mysqli_query($db, 'UPDATE player SET team_id= NULL WHERE team_id="'.$id.'"');
+        // mysqli_query($db, 'UPDATE player SET team_name = "NO Team" WHERE team_id="'.$id.'"');
+		mysqli_query($db, 'UPDATE player SET team_id= 0 WHERE team_id="'.$id.'"');
         mysqli_query($db, ' SET FOREIGN_KEY_CHECKS=1;');
         
 		header('location: view/tview.php');
-	}
+    }
+    /*UPDATE Queries */
 ?>
