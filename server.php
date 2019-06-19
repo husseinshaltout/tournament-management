@@ -3,6 +3,14 @@
     //Connect to database
     $db = mysqli_connect('localhost', 'root', '', 'tms');
     /*INSERT Queries */
+    if (isset($_POST['login'])) {
+        $username = $_POST['username'];
+		$password = $_POST['password'];
+
+        mysqli_query($db, "INSERT INTO users (username, password) VALUES ('$username', '$password')"); 
+		$_SESSION['message'] = "user added"; 
+        header('location: org.php');
+    }
 	// insert data from org.php to orgainzer table
     if (isset($_POST['submit_org'])) {
         $organizer_name = $_POST['organizer_name'];

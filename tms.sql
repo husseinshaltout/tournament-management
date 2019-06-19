@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 05:26 AM
+-- Generation Time: Jun 19, 2019 at 05:01 PM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -40,9 +40,8 @@ CREATE TABLE `organizer` (
 --
 
 INSERT INTO `organizer` (`organizer_id`, `organizer_name`, `organizer_email`, `address`) VALUES
-(1, '7amo', '7anmo@7', '13 7amo street'),
-(2, 'Test Org', 'test@test.com', '77'),
-(3, 'Organ', 'oragan@mail.com', 'orag address');
+(1, 'Hussein', 'hussein.shaltout@abol7sasasen.com', '66666666666'),
+(2, 'Hussein', 'hussein.shaltout@abol7sasasen.com', '66666666666');
 
 -- --------------------------------------------------------
 
@@ -64,8 +63,9 @@ CREATE TABLE `player` (
 --
 
 INSERT INTO `player` (`player_id`, `team_id`, `player_position`, `player_score`, `player_dob`, `player_name`) VALUES
-(1, 4, 'sss', 2147483647, '2011-08-19', 'Player'),
-(2, 4, 'DEF', 2147483647, '2011-08-19', 'Hussein');
+(1, 2, 'DEF', 4, '2011-08-19', 'Hussein'),
+(2, 2, 'DEF', 4, '2011-08-19', 'Hussein4'),
+(3, 4, 'sss', 44444, '2011-08-19', 'Hussein');
 
 -- --------------------------------------------------------
 
@@ -85,13 +85,13 @@ CREATE TABLE `team` (
 --
 
 INSERT INTO `team` (`team_id`, `team_phone`, `team_name`, `tournament_id`) VALUES
-(1, 102, 'cool', 1),
-(2, 12345, 'cool1', 1),
-(3, 1234567, 'team1', 2),
-(4, 102, 'cool', 2),
-(5, 102, 'cool', 3),
-(6, 102, 'cool1', 3),
-(7, 2147483647, '555555', 3);
+(1, 0, 'NO TEAM', 1),
+(2, 0, 'cool', 1),
+(3, 0, 'cool1', 1),
+(4, 0, 'coolrr', 1),
+(5, 102, 'cool', 1),
+(6, 2147483647, 'cool1', 1),
+(7, 2147483647, 'cool55555555555', 1);
 
 -- --------------------------------------------------------
 
@@ -102,6 +102,7 @@ INSERT INTO `team` (`team_id`, `team_phone`, `team_name`, `tournament_id`) VALUE
 CREATE TABLE `tournament` (
   `tournament_id` int(11) NOT NULL,
   `organizer_id` int(11) NOT NULL,
+  `tour_name` varchar(255) NOT NULL,
   `start_date` varchar(255) NOT NULL,
   `end_date` varchar(255) NOT NULL,
   `tour_type` varchar(25) NOT NULL
@@ -111,10 +112,28 @@ CREATE TABLE `tournament` (
 -- Dumping data for table `tournament`
 --
 
-INSERT INTO `tournament` (`tournament_id`, `organizer_id`, `start_date`, `end_date`, `tour_type`) VALUES
-(1, 1, '2011-08-19', '2011-08-19', 'Football'),
-(2, 2, '2011-08-19', '2011-08-19', 'Football'),
-(3, 3, '2011-08-19', '2011-08-19', 'wwwwwwwwwwwwww');
+INSERT INTO `tournament` (`tournament_id`, `organizer_id`, `tour_name`, `start_date`, `end_date`, `tour_type`) VALUES
+(1, 1, 'United', '2011-08-20', '2011-08-30', 'Soccer'),
+(2, 2, 'jhhhjjh', '2011-08-19', '2011-08-19', 'hjhhhh');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `username`, `password`) VALUES
+(1, 'a.khaled', 'ssssssssssssssss');
 
 --
 -- Indexes for dumped tables
@@ -148,6 +167,12 @@ ALTER TABLE `tournament`
   ADD KEY `organizer_id` (`organizer_id`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -155,13 +180,13 @@ ALTER TABLE `tournament`
 -- AUTO_INCREMENT for table `organizer`
 --
 ALTER TABLE `organizer`
-  MODIFY `organizer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `organizer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
-  MODIFY `player_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `player_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `team`
@@ -173,7 +198,13 @@ ALTER TABLE `team`
 -- AUTO_INCREMENT for table `tournament`
 --
 ALTER TABLE `tournament`
-  MODIFY `tournament_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `tournament_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
