@@ -32,6 +32,7 @@
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
+                            <th scope="col">Tournament Name</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">End Date</th>
                             <th scope="col">Tournament Type</th>
@@ -40,11 +41,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php if ($update == true): ?>
-                    <?php while ($row = mysqli_fetch_array($results)) {  $id = $row['tour_type'];?>
+                    <?php global $update; if ($update == true): ?>
+                    <?php while ($row = mysqli_fetch_array($results)) {  $id = $row['tournament_id'];?>
                         <input type="hidden" name="id" value="<?php echo $id; ?>">
 
                     <tr>
+                        <td><input class="form-control" type="text" value = '<?php echo $row['tour_name']; ?>' name="tour_name"></td>
                         <td><input class="form-control" type="text" value = '<?php echo $row['start_date']; ?>' name="start_date"></td>
                         <td><input class="form-control" type="text" value = '<?php echo $row['end_date']; ?>' name="end_date"></td>
                         <td><input class="form-control" type="text" value = '<?php echo $row['tour_type']; ?>' name="tour_type"></td>
@@ -66,6 +68,7 @@
                     <?php else: ?>
                     <?php while ($row = mysqli_fetch_array($results)) { ?>
                         <tr>
+                            <td><?php echo $row['tour_name']; ?></td>
                             <td><?php echo $row['start_date']; ?></td>
                             <td><?php echo $row['end_date']; ?></td>
                             <td><?php echo $row['tour_type']; ?></td>
