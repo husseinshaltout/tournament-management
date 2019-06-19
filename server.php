@@ -1,9 +1,9 @@
 <?php
-	session_start();
+    session_start();
+    //Connect to database
     $db = mysqli_connect('localhost', 'root', '', 'tms');
-	// initialize variables for Orgainzer
-    $address = "";
-
+    /*INSERT Queries */
+	// insert data from org.php to orgainzer table
     if (isset($_POST['submit_org'])) {
         $organizer_name = $_POST['organizer_name'];
 		$organizer_email = $_POST['organizer_email'];
@@ -14,9 +14,8 @@
 		$_SESSION['message'] = "Organizer added"; 
         header('location: tour.php');
     }
-    //initialze for tournment
+    //insert data from tour.php to tournment table
     if (isset($_POST['submit_tour'])) {
-
 		$tour_name = $_POST['tour_name'];
 		$start_date = $_POST['start_date'];
 		$end_date = $_POST['end_date'];
@@ -31,26 +30,18 @@
         }
         mysqli_query($db, "INSERT INTO tournament (organizer_id, start_date, end_date, tour_type, tour_name) VALUES ('$organizer_id_value', '$start_date', '$end_date', '$tour_type', '$tour_name')"); 
         
-        // $_SESSION['organizer_id_value'] = $organizer_id_value;//session to pass organizer_id_value
 		$_SESSION['message'] = "Tournment added"; 
 		header('location: teams.php');
     }
-    //Teams    
+    //insert data from team.php to teams table    
     if (isset($_POST['submit_team'])) {
 		$tname = $_POST['tname'];
         $pno = $_POST['pno'];
         $tournament_id_value = $_POST['tid'];
-        // $organizer_id_value = $_SESSION['organizer_id_value'];//received passed organizer_id_value
 
-        // $query = 'SELECT tournament_id FROM tournament WHERE organizer_id="'.$organizer_id_value.'"';
-
-        // $tournament_id = mysqli_query($db, $query);
-        // while ($row = $tournament_id->fetch_assoc()) {            
-        //     $tournament_id_value = $row['tournament_id'];            
-        // }
         mysqli_query($db, "INSERT INTO team (team_phone, team_name, tournament_id) VALUES ('$pno', '$tname', '$tournament_id_value')"); 
         
-        // $_SESSION['pno'] = $pno;//session to pass phone number
+
 		$_SESSION['message'] = "Teams are added"; 
 		header('location: player.php');
     }
@@ -58,35 +49,18 @@
 		$tname = $_POST['tname'];
 		$pno = $_POST['pno'];
         $tournament_id_value = $_POST['tid'];
-        // $organizer_id_value = $_SESSION['organizer_id_value'];//received passed organizer_id_value
 
-        // $query = 'SELECT tournament_id FROM tournament WHERE organizer_id="'.$organizer_id_value.'"';
-
-        // $tournament_id = mysqli_query($db, $query);
-        // while ($row = $tournament_id->fetch_assoc()) {            
-        //     $tournament_id_value = $row['tournament_id'];            
-        // }
         mysqli_query($db, "INSERT INTO team (team_phone, team_name, tournament_id) VALUES ('$pno', '$tname', '$tournament_id_value')"); 
-        
-        // $_SESSION['pno'] = $pno;//session to pass phone number
 		$_SESSION['message'] = "Team added successfully"; 
 		header('location: teams.php');
     }
-	// initialize player
+	//insert data from player.php to player
     if (isset($_POST['submit_p'])) {
 		$player_name = $_POST['player_name'];
         $player_dob = $_POST['player_dob'];
         $player_position = $_POST['player_position'];
         $player_score = $_POST['player_score'];
         $team_id_value = $_POST['tname'];
-        // $pno = $_SESSION['pno'];//received passed phone number
-        // $query = 'SELECT team_id FROM team WHERE team_name="'.$player_team.'"';
-
-        // $team_id = mysqli_query($db, $query);
-        // while ($row = $team_id->fetch_assoc()) {            
-        //     $team_id_value =  $row['team_id'];            
-        // }
-
 
 		mysqli_query($db, "INSERT INTO player (team_id, player_name, player_dob, player_position, player_score) VALUES ('$team_id_value', '$player_name', '$player_dob', '$player_position', '$player_score')"); 
 		$_SESSION['message'] = "Players are added successfully"; 
@@ -100,42 +74,37 @@
         // $player_team = $_POST['tname'];
         $team_id_value = $_POST['tname'];
 
-        // $pno = $_SESSION['pno'];//received passed phone number
-        // $query = 'SELECT team_id FROM team WHERE team_name="'.$player_team.'"';
-
-        // $team_id = mysqli_query($db, $query);
-        // while ($row = $team_id->fetch_assoc()) {            
-        //     $team_id_value =  $row['team_id'];            
-        // }
-
-
 		mysqli_query($db, "INSERT INTO player (team_id, player_name, player_dob, player_position, player_score) VALUES ('$team_id_value', '$player_name', '$player_dob', '$player_position', '$player_score')"); 
 		$_SESSION['message'] = "Players are added successfully"; header('location: player.php');
     }    
-
+    /*Delete Queries */
     //Delete Tournment
-    if (isset($_GET['del'])) {
-        $id = $_GET['del'];
+    if (isset($_GET['delt'])) {
+        $id = $_GET['delt'];
         mysqli_query($db, 'SET FOREIGN_KEY_CHECKS=0;');
         mysqli_query($db, 'DELETE FROM tournament WHERE tournament_id="'.$id.'"');
         mysqli_query($db, ' SET FOREIGN_KEY_CHECKS=1;');
         
 		header('location: view/dashboard.php');
     }   
-     //Delete Tournment
-    if (isset($_GET['del'])) {
-        $id = $_GET['del'];
+     //Delete Player
+    if (isset($_GET['delp'])) {
+        $id = $_GET['delp'];
         mysqli_query($db, 'SET FOREIGN_KEY_CHECKS=0;');
-        mysqli_query($db, 'DELETE FROM tournament WHERE tournament_id="'.$id.'"');
+        mysqli_query($db, 'DELETE FROM player WHERE player_id="'.$id.'"');
         mysqli_query($db, ' SET FOREIGN_KEY_CHECKS=1;');
         
 		header('location: view/pview.php');
     }    
-    //Delete Tournment
-    if (isset($_GET['del'])) {
-        $id = $_GET['del'];
+    //Delete Team
+    if (isset($_GET['deltm'])) {
+        $id = $_GET['deltm'];
+
         mysqli_query($db, 'SET FOREIGN_KEY_CHECKS=0;');
-        mysqli_query($db, 'DELETE FROM tournament WHERE tournament_id="'.$id.'"');
+        mysqli_query($db, 'DELETE FROM team WHERE team_id="'.$id.'"');
+        //update player team id to null
+        mysqli_query($db, 'UPDATE player SET team_name = "NO Team" WHERE team_id="'.$id.'"');
+		mysqli_query($db, 'UPDATE player SET team_id= NULL WHERE team_id="'.$id.'"');
         mysqli_query($db, ' SET FOREIGN_KEY_CHECKS=1;');
         
 		header('location: view/tview.php');
