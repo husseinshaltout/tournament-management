@@ -26,6 +26,7 @@
                         ?>
                     </div>
                     <?php endif ?>                                           
+                <form method="post" action="../server.php" >
                 <?php $results = mysqli_query($db, "SELECT * FROM player"); ?>
                 <table class="table">
                     <thead class="thead-light">
@@ -39,6 +40,45 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <!--/////////////////EDIT/UPDATE/////////////////-->
+                    <?php global $update; if ($update == true): ?>
+                    <?php while ($row = mysqli_fetch_array($results)) { $pid = $row['player_id']; ?>
+                    <!-- storing value of tournament_id in hidden input -->
+                    <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+                    <tr>
+                    <td><input class="form-control" type="text" value = '<?php echo $row['player_name']; ?>' name="player_name"></td>
+                    <td><input class="form-control" type="text" value = '<?php echo $row['player_dob']; ?>' name="player_dob"></td>
+                    <td><input class="form-control" type="text" value = '<?php echo $row['player_score']; ?>' name="player_score"></td>
+                    <td><input class="form-control" type="text" value = '<?php echo $row['player_position']; ?>' name="player_position"></td>
+                    <!-- To display Team Name -->
+                    <?php $team_id_v = $row['team_id']; ?>
+                    <?php $query = 'SELECT team_name,team_id FROM team WHERE team_id="'.$team_id_v.'"';
+                    $team_name = mysqli_query($db, $query);
+                    while ($row1 = $team_name->fetch_assoc()) {
+                        $team_id_value =  $row1['team_id'];
+                        $team_name_value =  $row1['team_name'];
+                    }                    
+                    ?>
+                    <!-- Display all available teams -->
+                    <td><select name = "tname" class="form-control"><?php echo "<option value ='$team_id_value'>$team_name_value</option>";//Current player team ?>
+                    <?php $query = 'SELECT team_name,team_id FROM team';
+                                    $team_id = mysqli_query($db, $query);
+                                    while ($row1 = $team_id->fetch_assoc()) {
+                                        $team_name_value =  $row1['team_name'];
+                                        $team_id_value =  $row1['team_id'];
+                                        echo "<option value ='$team_id_value'>$team_name_value</option>";
+                                    }?> 
+                    
+                    
+                    </select> </td>
+                    <td>
+                        <button class="btn btn-warning btn-sm" type="submit" name="updatep">Update</button>
+                    </td>
+
+                        </tr>
+                    <?php } ?>
+                    <?php else: ?>
+                    <!--/////////////////Display/SELECT/////////////////-->
                     <?php while ($row = mysqli_fetch_array($results)) { ?>
                         <tr>
                             <td><?php echo $row['player_name']; ?></td>
@@ -56,13 +96,15 @@
                     ?>
                             <td><?php echo $team_name_value; ?></td>
                             <td>
-                                <a href="../dashboard.php?editp=<?php echo $row['player_id']; ?>" class="btn btn-primary btn-sm" >Edit</a>
+                                <a href="pview.php?editp=<?php echo $row['player_id']; ?>" class="btn btn-primary btn-sm" >Edit</a>
                             </td>
                             <td>
                                 <a href="../server.php?delp=<?php echo $row['player_id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>
+                    <?php endif ?>
+                    </form>
                     </tbody>
                 </table>
 
