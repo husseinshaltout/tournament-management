@@ -112,4 +112,37 @@
 		header('location: view/tview.php');
     }
     /*UPDATE Queries */
+    if (isset($_POST['update'])) {
+		$id = $_POST['id'];
+        $start_date = $_POST['start_date'];
+        $end_date = $_POST['end_date'];
+        $tour_type = $_POST['tour_type'];
+        $tour_name = $_POST['tour_name'];
+	
+		$record1 = mysqli_query($db, "UPDATE tournament SET tour_name = '$tour_name', start_date='$start_date', end_date='$end_date', tour_type='$tour_type' WHERE tournament_id=$id");
+        if (!$record1) {
+            printf("Error: %s\n", mysqli_error($db));
+ 
+            exit();
+        }
+        $_SESSION['message'] = "Address updated!"; 
+		header('location: ./view/dashboard.php');
+    }
+    
+    if (isset($_GET['editt'])) {
+		$id = $_GET['editt'];
+		$update = true;
+		$record = mysqli_query($db, 'SELECT * FROM tournament WHERE tournament_id="'.$id.'"');
+        if (!$record) {
+            printf("Error: %s\n", mysqli_error($db));
+ 
+            exit();
+        }
+		if (@count($record) == 1 ) {
+			$n = mysqli_fetch_array($record);
+			$start_date = $n['start_date'];
+			$end_date = $n['end_date'];
+			$tour_type = $n['tour_type'];
+		}
+	}
 ?>
