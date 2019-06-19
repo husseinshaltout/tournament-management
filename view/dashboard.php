@@ -25,7 +25,9 @@
                             unset($_SESSION['message']);
                         ?>
                     </div>
-                    <?php endif ?>                                           
+                    <?php endif ?>     
+                                                          
+                <form method="post" action="../server.php" >
                 <?php $results = mysqli_query($db, "SELECT * FROM tournament"); ?>
                 <table class="table">
                     <thead class="thead-light">
@@ -38,6 +40,30 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php if ($update == true): ?>
+                    <?php while ($row = mysqli_fetch_array($results)) {  $id = $row['tour_type'];?>
+                        <input type="hidden" name="id" value="<?php echo $id; ?>">
+
+                    <tr>
+                        <td><input class="form-control" type="text" value = '<?php echo $row['start_date']; ?>' name="start_date"></td>
+                        <td><input class="form-control" type="text" value = '<?php echo $row['end_date']; ?>' name="end_date"></td>
+                        <td><input class="form-control" type="text" value = '<?php echo $row['tour_type']; ?>' name="tour_type"></td>
+                    <?php $organizer_id_v = $row['organizer_id']; ?>
+                    <?php $query = 'SELECT organizer_name FROM organizer WHERE organizer_id="'.$organizer_id_v.'"';
+
+                    $organizer_name = mysqli_query($db, $query);
+                    while ($row1 = $organizer_name->fetch_assoc()) {
+                        $organizer_name_value =  $row1['organizer_name'];
+                    }                    
+
+                    ?>
+                        <td><?php echo $organizer_name_value; ?></td>
+                        <td>
+                            <button class="btn btn-warning btn-sm" type="submit" name="update">Update</button>
+                            </td>
+                        </tr>
+                    <?php } ?>
+                    <?php else: ?>
                     <?php while ($row = mysqli_fetch_array($results)) { ?>
                         <tr>
                             <td><?php echo $row['start_date']; ?></td>
@@ -54,13 +80,15 @@
                     ?>
                             <td><?php echo $organizer_name_value; ?></td>
                             <td>
-                                <a href="dashboard.php?edit=<?php echo $row['tournament_id']; ?>" class="btn btn-primary btn-sm" >Edit</a>
+                                <a href="dashboard.php?editt=<?php echo $row['tournament_id']; ?>" class="btn btn-primary btn-sm" >Edit</a>
                             </td>
                             <td>
-                                <a href="server.php?del=<?php echo $row['tournament_id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="../server.php?delt=<?php echo $row['tournament_id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>
+                    <?php endif ?>
+                    </form>
                     </tbody>
                 </table>
 

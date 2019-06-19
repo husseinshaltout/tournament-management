@@ -16,7 +16,7 @@
             <div class="col-lg-12">  
         <div class="card">
             <article class="card-body">
-                <h4 class="card-title text-center">Players</h4>
+                <h4 class="card-title text-center">Teams</h4>
                 <hr>
                 <?php if (isset($_SESSION['message'])): ?>
                     <div class="text-success text-center">
@@ -41,10 +41,11 @@
                 <td><?php echo $row['team_name']; ?></td>
                 <td><?php echo $row['team_phone']; ?></td>
                 <td>
-                    <a href="index.php?edit=<?php echo $row['id']; ?>" class="btn btn-primary btn-sm">Edit</a>
+                <?php $tmid = $row['team_id'];?>
+                    <a href="../index.php?edittm=<?php if($tmid == 1){ echo NULL;}else{echo $tmid;} ?>" class="btn btn-primary btn-sm">Edit</a>
                 </td>
                 <td>
-                    <a href="server.php?del=<?php echo $row['id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                    <a href="../server.php?deltm=<?php if($tmid == 1){ echo NULL;}else{echo $tmid;} ?>" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         <?php } ?>
@@ -56,7 +57,7 @@
         </div>
     </div>
     <form method="post" action="server.php" >
-    <input type="hidden" name="tournament_id" value="<?php echo $tournament_id1; ?>">
+    <input type="hidden" name="team_id" value="<?php echo $team_id; ?>">
     </form>
 
 </body>

@@ -56,10 +56,10 @@
                     ?>
                             <td><?php echo $team_name_value; ?></td>
                             <td>
-                                <a href="dashboard.php?edit=<?php echo $row['tournament_id']; ?>" class="btn btn-primary btn-sm" >Edit</a>
+                                <a href="../dashboard.php?editp=<?php echo $row['player_id']; ?>" class="btn btn-primary btn-sm" >Edit</a>
                             </td>
                             <td>
-                                <a href="server.php?del=<?php echo $row['tournament_id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                                <a href="../server.php?delp=<?php echo $row['player_id']; ?>" class="btn btn-danger btn-sm">Delete</a>
                             </td>
                         </tr>
                     <?php } ?>
@@ -71,7 +71,7 @@
         </div>
     </div>
     <form method="post" action="server.php" >
-    <input type="hidden" name="tournament_id" value="<?php echo $tournament_id1; ?>">
+    <input type="hidden" name="player_id" value="<?php echo $player_id; ?>">
     </form>
 
 </body>
