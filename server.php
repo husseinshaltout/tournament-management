@@ -115,9 +115,29 @@
 
     //Delete Tournment
     if (isset($_GET['del'])) {
-		$id = $_GET['del'];
-		mysqli_query($db, "DELETE FROM tournament WHERE tournament_id=$tournament_id1");
-		$_SESSION['message'] = $tournament_id1; 
+        $id = $_GET['del'];
+        mysqli_query($db, 'SET FOREIGN_KEY_CHECKS=0;');
+        mysqli_query($db, 'DELETE FROM tournament WHERE tournament_id="'.$id.'"');
+        mysqli_query($db, ' SET FOREIGN_KEY_CHECKS=1;');
+        
 		header('location: view/dashboard.php');
+    }   
+     //Delete Tournment
+    if (isset($_GET['del'])) {
+        $id = $_GET['del'];
+        mysqli_query($db, 'SET FOREIGN_KEY_CHECKS=0;');
+        mysqli_query($db, 'DELETE FROM tournament WHERE tournament_id="'.$id.'"');
+        mysqli_query($db, ' SET FOREIGN_KEY_CHECKS=1;');
+        
+		header('location: view/pview.php');
+    }    
+    //Delete Tournment
+    if (isset($_GET['del'])) {
+        $id = $_GET['del'];
+        mysqli_query($db, 'SET FOREIGN_KEY_CHECKS=0;');
+        mysqli_query($db, 'DELETE FROM tournament WHERE tournament_id="'.$id.'"');
+        mysqli_query($db, ' SET FOREIGN_KEY_CHECKS=1;');
+        
+		header('location: view/tview.php');
 	}
 ?>
