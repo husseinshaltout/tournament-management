@@ -26,9 +26,10 @@
                         ?>
                     </div>
                     <?php endif ?>     
-                                                          
-                <form method="post" action="../server.php" >// Start of post form
-                <?php $results = mysqli_query($db, "SELECT * FROM tournament"); ?>//query to get tournament table
+                <!-- Start of post form-->
+                <form method="post" action="../server.php" >
+                <!-- query to get tournament table -->
+                <?php $results = mysqli_query($db, "SELECT * FROM tournament"); ?>
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
@@ -41,7 +42,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    /*If edit button is clicked server.php will change value of $update will be changed to true */
+                    <!-- /*If edit button is clicked server.php will change value of $update will be changed to true */ -->
                     <?php global $update; if ($update == true): ?>
                     <?php while ($row = mysqli_fetch_array($results)) {  $tid = $row['tournament_id'];?>
                         <input type="hidden" name="tid" value="<?php echo $tid; ?>">//storing value of tournament_id in hidden input
