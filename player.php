@@ -68,7 +68,6 @@
                                         $team_id_value =  $row1['team_id'];
                                         echo "<option value ='$team_id_value'>$team_name_value</option>";
                                     }?>  
-
                             </select>                             
                             </div> 
                         </div> 

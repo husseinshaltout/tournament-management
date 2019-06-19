@@ -112,8 +112,9 @@
 		header('location: view/tview.php');
     }
     /*UPDATE Queries */
+    //UPDATE TOURNAMENT
     if (isset($_POST['update'])) {
-		$id = $_POST['id'];
+		$id = $_POST['tid'];
         $start_date = $_POST['start_date'];
         $end_date = $_POST['end_date'];
         $tour_type = $_POST['tour_type'];
@@ -125,7 +126,7 @@
  
             exit();
         }
-        $_SESSION['message'] = "Address updated!"; 
+        $_SESSION['message'] = "Tournament updated!"; 
 		header('location: ./view/dashboard.php');
     }
     
@@ -143,6 +144,41 @@
 			$start_date = $n['start_date'];
 			$end_date = $n['end_date'];
 			$tour_type = $n['tour_type'];
+		}
+    }
+    //UPDATE PLAYERVIEW
+    if (isset($_POST['updatep'])) {
+		$id = $_POST['pid'];
+        $player_name = $_POST['player_name'];
+        $player_dob = $_POST['player_dob'];
+        $player_score = $_POST['player_score'];
+        $player_position = $_POST['player_position'];
+        $tname = $_POST['tname'];
+	
+		$record1 = mysqli_query($db, "UPDATE player SET team_id = '$tname', player_name = '$player_name', player_dob='$player_dob', player_score='$player_score', player_position='$player_position' WHERE player_id=$id");
+        if (!$record1) {
+            printf("Error: %s\n", mysqli_error($db));
+            exit();
+        }
+        $_SESSION['message'] = "Player updated!"; 
+		header('location: ./view/pview.php');
+    }
+    
+    if (isset($_GET['editp'])) {
+		$id = $_GET['editp'];
+		$update = true;
+		$record = mysqli_query($db, 'SELECT * FROM player WHERE player_id="'.$id.'"');
+        if (!$record) {
+            printf("Error: %s\n", mysqli_error($db));
+ 
+            exit();
+        }
+		if (@count($record) == 1 ) {
+			$n = mysqli_fetch_array($record);
+			$player_name = $n['player_name'];
+			$player_dob = $n['player_dob'];
+			$player_score = $n['player_score'];
+			$player_position = $n['player_position'];
 		}
 	}
 ?>
