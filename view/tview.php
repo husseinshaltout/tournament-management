@@ -39,19 +39,18 @@
                     </thead>
                     <tbody>
                     <!--/////////////////EDIT/UPDATE/////////////////-->
+                    <?php $results2 = mysqli_query($db, 'SELECT * FROM team WHERE team_id = "'.$id.'"'); ?>
                     <!-- /*If edit button is clicked server.php will change value of $update will be changed to true */ -->
                     <?php if ($update == true): ?>
-                    <?php while ($row = mysqli_fetch_array($results)) { $tid = $row['team_id']; ?>
+                    <?php while ($row = mysqli_fetch_array($results2)) { $tid = $row['team_id']; ?>
                     <!-- storing value of team_id in hidden input -->
                     <input type="hidden" name="tid" value="<?php echo $tid; ?>">
                     <tr>
                     <td><input class="form-control" type="text" value = '<?php echo $row['team_name']; ?>' name="team_name"></td>
-                    <td><input class="form-control" type="text" value = '<?php echo $row['team_phone']; ?>' name="team_phone"></td>                        
-                    <?php if($id1 == $tid):?>
+                    <td><input class="form-control" type="text" value = '<?php echo $row['team_phone']; ?>' name="team_phone"></td>                                            
                     <td>
                         <button class="btn btn-warning btn-sm" type="submit" name="updatet">Update</button>
                     </td>                   
-                    <?php endif ?>
                     <?php } ?>
                     </tr>
                     <?php else: ?>

@@ -41,8 +41,9 @@
                     </thead>
                     <tbody>
                     <!--/////////////////EDIT/UPDATE/////////////////-->
+                    <?php $results2 = mysqli_query($db, 'SELECT * FROM player WHERE player_id = "'.$id.'" '); ?>
                     <?php if ($update == true): ?>
-                    <?php while ($row = mysqli_fetch_array($results)) { $pid = $row['player_id']; ?>
+                    <?php while ($row = mysqli_fetch_array($results2)) { $pid = $row['player_id']; ?>
                     <!-- storing value of player_id in hidden input -->
                     <input type="hidden" name="pid" value="<?php echo $pid; ?>">
                     <tr>
@@ -70,12 +71,10 @@
                                     }?> 
                     
                     
-                    </select> </td>
-                    <?php if($id == $pid):?>
+                    </select> </td>                    
                     <td>
                         <button class="btn btn-warning btn-sm" type="submit" name="updatep">Update</button>
-                    </td>                   
-                    <?php endif ?>
+                    </td>                                       
                     </tr>
                     <?php } ?>
                     <?php else: ?>

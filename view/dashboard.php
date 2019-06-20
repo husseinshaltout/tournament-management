@@ -44,8 +44,9 @@
                     <tbody>
                     <!--/////////////////EDIT/UPDATE/////////////////-->
                     <!-- /*If edit button is clicked server.php will change value of $update will be changed to true */ -->
+                    <?php $results2 = mysqli_query($db, 'SELECT * FROM tournament WHERE tournament_id = "'.$id.'"'); ?>
                     <?php global $update; if ($update == true): ?>
-                    <?php while ($row = mysqli_fetch_array($results)) {  $tid = $row['tournament_id'];?>
+                    <?php while ($row = mysqli_fetch_array($results2)) {  $tid = $row['tournament_id'];?>
                         <!-- //storing value of tournament_id in hidden input -->
                         <input type="hidden" name="tid" value="<?php echo $tid; ?>">
 
@@ -64,12 +65,10 @@
 
                     ?>
                         <td><?php echo $organizer_name_value; ?></td>
-                    <?php if($id == $tid):?>
                     <td>
                         <button class="btn btn-warning btn-sm" type="submit" name="update">Update</button>
                     </td>                   
                     
-                    <?php endif ?>
                     </tr>
                     <?php } ?>
                     <?php else: ?>
