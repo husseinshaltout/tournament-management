@@ -35,7 +35,7 @@
                     </div> <!-- input-group.// -->
                     </div> <!-- form-group// -->
                     <div class="form-group">
-                    <button type="submit" name = "login" class="btn btn-primary btn-block"> Login  </button>
+                    <button type="submit" name = "login" class="btn btn-primary btn-block"> Sign Up  </button>
                     </div> <!-- form-group// -->
                     </form>
                 </article>

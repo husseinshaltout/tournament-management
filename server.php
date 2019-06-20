@@ -5,6 +5,7 @@
     $db = mysqli_connect('localhost', 'root', '', 'tms');
     $update = false;
     $id = 0;
+    $top = false;
     /*INSERT Queries */
     if (isset($_POST['login'])) {
         $username = $_POST['username'];
@@ -225,5 +226,21 @@
 			$team_phone = $n['team_phone'];
 
 		}
+    }
+    if (isset($_GET['top'])) {
+		// $id = $_GET['edittm'];
+		$top = true;
+	// 	$record = mysqli_query($db, 'SELECT * FROM team WHERE team_id="'.$id.'"');
+    //     if (!$record) {
+    //         printf("Error: %s\n", mysqli_error($db));
+ 
+    //         exit();
+    //     }
+	// 	if (@count($record) == 1 ) {
+	// 		$n = mysqli_fetch_array($record);
+	// 		$team_name = $n['team_name'];
+	// 		$team_phone = $n['team_phone'];
+
+	// 	}
 	}
 ?>
