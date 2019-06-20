@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 19, 2019 at 05:01 PM
+-- Generation Time: Jun 20, 2019 at 11:59 AM
 -- Server version: 10.3.15-MariaDB
 -- PHP Version: 7.3.6
 
@@ -35,14 +35,6 @@ CREATE TABLE `organizer` (
   `address` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `organizer`
---
-
-INSERT INTO `organizer` (`organizer_id`, `organizer_name`, `organizer_email`, `address`) VALUES
-(1, 'Hussein', 'hussein.shaltout@abol7sasasen.com', '66666666666'),
-(2, 'Hussein', 'hussein.shaltout@abol7sasasen.com', '66666666666');
-
 -- --------------------------------------------------------
 
 --
@@ -58,15 +50,6 @@ CREATE TABLE `player` (
   `player_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `player`
---
-
-INSERT INTO `player` (`player_id`, `team_id`, `player_position`, `player_score`, `player_dob`, `player_name`) VALUES
-(1, 2, 'DEF', 4, '2011-08-19', 'Hussein'),
-(2, 2, 'DEF', 4, '2011-08-19', 'Hussein4'),
-(3, 4, 'sss', 44444, '2011-08-19', 'Hussein');
-
 -- --------------------------------------------------------
 
 --
@@ -79,19 +62,6 @@ CREATE TABLE `team` (
   `team_name` varchar(255) NOT NULL,
   `tournament_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `team`
---
-
-INSERT INTO `team` (`team_id`, `team_phone`, `team_name`, `tournament_id`) VALUES
-(1, 0, 'NO TEAM', 1),
-(2, 0, 'cool', 1),
-(3, 0, 'cool1', 1),
-(4, 0, 'coolrr', 1),
-(5, 102, 'cool', 1),
-(6, 2147483647, 'cool1', 1),
-(7, 2147483647, 'cool55555555555', 1);
 
 -- --------------------------------------------------------
 
@@ -108,14 +78,6 @@ CREATE TABLE `tournament` (
   `tour_type` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `tournament`
---
-
-INSERT INTO `tournament` (`tournament_id`, `organizer_id`, `tour_name`, `start_date`, `end_date`, `tour_type`) VALUES
-(1, 1, 'United', '2011-08-20', '2011-08-30', 'Soccer'),
-(2, 2, 'jhhhjjh', '2011-08-19', '2011-08-19', 'hjhhhh');
-
 -- --------------------------------------------------------
 
 --
@@ -127,13 +89,6 @@ CREATE TABLE `users` (
   `username` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `username`, `password`) VALUES
-(1, 'a.khaled', 'ssssssssssssssss');
 
 --
 -- Indexes for dumped tables
@@ -180,31 +135,31 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `organizer`
 --
 ALTER TABLE `organizer`
-  MODIFY `organizer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `organizer_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `player`
 --
 ALTER TABLE `player`
-  MODIFY `player_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `player_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `team`
 --
 ALTER TABLE `team`
-  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `team_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tournament`
 --
 ALTER TABLE `tournament`
-  MODIFY `tournament_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `tournament_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
