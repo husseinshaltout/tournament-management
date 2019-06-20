@@ -34,6 +34,7 @@
                         <tr>
                             <th scope="col">Team name</th>
                             <th scope="col">Phone Number</th>
+                            <th scope="col">NO. of Players</th>
                             <th scope="col" colspan="2">Action</th>
                         </tr>
                     </thead>
@@ -59,8 +60,14 @@
                     <tr>
                         <td><?php echo $row['team_name']; ?></td>
                         <td><?php echo $row['team_phone']; ?></td>
-
                         <?php $tmid = $row['team_id'];?>
+                    <?php $query1 = 'SELECT COUNT(player_id) FROM player WHERE team_id="'.$tmid.'"';
+                    $player_count = mysqli_query($db, $query1);
+                    while ($row1 = $player_count->fetch_assoc()) {
+                        $player_count_value =  $row1['COUNT(player_id)'];
+                    }?>                        
+                            <td><?php echo $player_count_value; ?></td>
+
                         <!-- If NO TEAM hide edit and delete buttons -->
                         <?php if($tmid == 1){ echo NULL;}else{?>
                         <td>

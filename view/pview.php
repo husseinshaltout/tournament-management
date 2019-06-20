@@ -76,7 +76,7 @@
                         <button class="btn btn-warning btn-sm" type="submit" name="updatep">Update</button>
                     </td>                                       
                     </tr>
-                    <?php } ?>
+                    <?php } ?>                
                     <?php else: ?>
                     <!--/////////////////Display/SELECT/////////////////-->
                     <?php while ($row = mysqli_fetch_array($results)) { ?>

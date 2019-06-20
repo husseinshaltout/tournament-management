@@ -21,8 +21,12 @@
                     <li class="nav-item">                      
                       <a class="nav-link" href="dashboard.php">Tournament</a>
                     </li>
-                    <li class="nav-item">                      
-                      <a class="nav-link" href="pview.php">Players</a>
+                    <li class="nav-item dropdown">                      
+                      <a class="nav-link dropdown-toggle" href="pview.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Players</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="pview.php">Players</a>                  
+                        <a class="dropdown-item" href="query.php">Top 5 scores</a>                  
+                      </div>
                     </li>
                     <li class="nav-item">                      
                       <a class="nav-link" href="tview.php">Teams</a>
