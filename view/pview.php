@@ -41,9 +41,9 @@
                     </thead>
                     <tbody>
                     <!--/////////////////EDIT/UPDATE/////////////////-->
-                    <?php global $update; if ($update == true): ?>
+                    <?php if ($update == true): ?>
                     <?php while ($row = mysqli_fetch_array($results)) { $pid = $row['player_id']; ?>
-                    <!-- storing value of tournament_id in hidden input -->
+                    <!-- storing value of player_id in hidden input -->
                     <input type="hidden" name="pid" value="<?php echo $pid; ?>">
                     <tr>
                     <td><input class="form-control" type="text" value = '<?php echo $row['player_name']; ?>' name="player_name"></td>
@@ -71,11 +71,12 @@
                     
                     
                     </select> </td>
+                    <?php if($id == $pid):?>
                     <td>
                         <button class="btn btn-warning btn-sm" type="submit" name="updatep">Update</button>
-                    </td>
-
-                        </tr>
+                    </td>                   
+                    <?php endif ?>
+                    </tr>
                     <?php } ?>
                     <?php else: ?>
                     <!--/////////////////Display/SELECT/////////////////-->
@@ -107,14 +108,13 @@
                     </form>
                     </tbody>
                 </table>
-
+                <div class="row justify-content-center">
+                <a class="btn btn-warning btn-md justify-content-end" href = "../player.php" name="addp">Add Player</a>
+                </div>
         </div> <!-- card.// -->
             </div>
         </div>
     </div>
-    <form method="post" action="server.php" >
-    <input type="hidden" name="player_id" value="<?php echo $player_id; ?>">
-    </form>
 
 </body>
 </html>

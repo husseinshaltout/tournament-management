@@ -42,10 +42,12 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <!--/////////////////EDIT/UPDATE/////////////////-->
                     <!-- /*If edit button is clicked server.php will change value of $update will be changed to true */ -->
                     <?php global $update; if ($update == true): ?>
                     <?php while ($row = mysqli_fetch_array($results)) {  $tid = $row['tournament_id'];?>
-                        <input type="hidden" name="tid" value="<?php echo $tid; ?>">//storing value of tournament_id in hidden input
+                        <!-- //storing value of tournament_id in hidden input -->
+                        <input type="hidden" name="tid" value="<?php echo $tid; ?>">
 
                     <tr>
                         <td><input class="form-control" type="text" value = '<?php echo $row['tour_name']; ?>' name="tour_name"></td>
@@ -62,12 +64,16 @@
 
                     ?>
                         <td><?php echo $organizer_name_value; ?></td>
-                        <td>
-                            <button class="btn btn-warning btn-sm" type="submit" name="update">Update</button>
-                            </td>
-                        </tr>
+                    <?php if($id == $tid):?>
+                    <td>
+                        <button class="btn btn-warning btn-sm" type="submit" name="update">Update</button>
+                    </td>                   
+                    
+                    <?php endif ?>
+                    </tr>
                     <?php } ?>
                     <?php else: ?>
+                    <!--/////////////////Display/SELECT/////////////////-->
                     <?php while ($row = mysqli_fetch_array($results)) { ?>
                         <tr>
                             <td><?php echo $row['tour_name']; ?></td>
@@ -96,6 +102,9 @@
                     </form>
                     </tbody>
                 </table>
+                <div class="row justify-content-center">
+                <a class="btn btn-warning btn-md justify-content-end" href = "../tour.php" name="addt">Add tournament</a>
+                </div>
 
         </div> <!-- card.// -->
             </div>
