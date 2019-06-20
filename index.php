@@ -16,7 +16,12 @@
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-                  <ul class="navbar-nav text-right">
+                <ul class="navbar-nav">
+                    <li class="nav-item">                      
+                      <a class="nav-link" href="./view/dashboard.php">Dashboard</a>
+                    </li>
+                  </ul>
+                  <ul class="navbar-nav ml-auto">
                     <li class="nav-item active">                      
                       <a class="nav-link" href="#">Login <i class="fa fa-user"></i></a>
                     </li>

@@ -35,13 +35,13 @@
                         <div class="form-group row">
                             <label for="example-date-input" class="col-4 col-form-label">Start Date</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" value="2011-08-19" name = "start_date" id="example-date-input">
+                                <input class="form-control" type="date" value="2019-06-01" name = "start_date" id="example-date-input">
                             </div>
                         </div>
                         <div class="form-group row">
                             <label for="example-date-input" class="col-4 col-form-label">End Date</label>
                             <div class="col-8">
-                                <input class="form-control" type="text" value="2011-08-19" name = "end_date" id="example-date-input">
+                                <input class="form-control" type="date" value="2019-06-30" name = "end_date" id="example-date-input">
                             </div>
                         </div>
                         <div class="form-group row">

@@ -32,7 +32,7 @@
                             <input class="form-control" type="text" placeholder="Team" name = "tname" id="example-text-input">
                             </div>
                             <div class="col-4">
-                            <input class="form-control" type="number" placeholder="1-(555)-555-5555" name = "pno"  id="text-input-phone">                               
+                            <input class="form-control" type="text" placeholder="1-(555)-555-5555" name = "pno"  id="text-input-phone">                               
                             </div>    
                             <div class="col-4">
                             <select name = "tid" class="form-control">
